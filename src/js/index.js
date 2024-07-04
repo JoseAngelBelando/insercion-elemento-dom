@@ -222,7 +222,7 @@ const USERS = [
   },
   {
     name: 'Pedro Estrada',
-    age: 77,
+    age: 55,
     username: 'Pedro29',
     email: 'Pedro_Estrada22@hotmail.com',
     profileImage: 'https://randomuser.me/api/portraits/men/2.jpg',
@@ -265,7 +265,7 @@ const generarTarjetasUsuarios = () => {
     if (user.job) {
       const job = document.createElement('p');
       job.textContent = `Job: ${user.job}`;
-      details.appendChild(job);
+      details.append(job);
     }
 
     details.append(name);
@@ -273,10 +273,10 @@ const generarTarjetasUsuarios = () => {
     details.append(age);
     details.append(email);
 
-    card.appendChild(profileImage);
-    card.appendChild(details);
+    card.append(profileImage);
+    card.append(details);
 
-    container.appendChild(card);
+    container.append(card);
   });
 };
 
