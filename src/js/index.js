@@ -14,16 +14,16 @@ import '../scss/styles.scss';
 // </ul>
 // ```
 
-// const button = document.getElementById('button');
-// const ul = document.getElementById('ul');
-// let itemCount = ul.getElementById('li').length;
+const button = document.getElementById('button1');
+const ul = document.getElementById('ul1');
 
-// button.addEventListener('click', () => {
-//   itemCount++;
-//   const newItem = document.createElement('li');
-//   newItem.textContent = `Item ${itemCount}`;
-//   ul.appendChild(newItem);
-// });
+const createItem = event => {
+  const newLiItem = document.createElement('li');
+  newLiItem.textContent = `Item ${ul.children.length + 1}`;
+  ul.append(newLiItem);
+};
+button.addEventListener('click', createItem);
+
 // - Usando el input range que te doy haz un generador de encabezados. El input te permite seleccionar un número del 1 al 6, en función de cual elijas ser generará un encabezado con la etiqueta correspondiente. Si elijes un 3, al hacer click en el botón se generará un h3 con el texto "soy un h3", si elijes un 5 un h5 con el texto "soy un h5" y así para todos.
 
 // ```html
@@ -155,38 +155,34 @@ document.addEventListener('DOMContentLoaded', () => {
 // <ul></ul>
 // ```
 
-const boton = document.getElementById('boton');
-const tabla = document.getElementById('tabla');
+const inputNumberElement = document.getElementById('input-number');
+const buttonGenerateElement = document.getElementById('button-generate');
+const multiplyListElement = document.getElementById('multiply-list');
 
-boton.addEventListener('click', () => {
-  // Obtener el número introducido por el usuario
-  const numero = parseInt(document.getElementById('numero').value);
+const validateNumber = () => {
+  // if (inputNumberElement.value > 0) {
+  //   buttonGenerateElement.diabled = false;
+  // } else {
+  //   buttonGenerateElement.disable = true;
+  // }
+  buttonGenerateElement.disabled = inputNumberElement.value <= 0;
+};
 
-  // Limpiar la tabla existente
-  tabla.innerHTML = '';
-
-  // Verificar si el número es válido (positivo y mayor que 0)
-  if (numero > 0 && !isNaN(numero)) {
-    // Generar la tabla de multiplicar del número del 0 al 10
-    for (let i = 0; i <= 10; i++) {
-      const resultado = numero * i;
-      const item = document.createElement('li');
-      item.textContent = `${numero} x ${i} = ${resultado}`;
-      tabla.appendChild(item);
-    }
-  } else {
-    // Mostrar un mensaje si el número no es válido
-    const mensaje = document.createElement('li');
-    mensaje.textContent = 'Introduce un número válido (mayor que 0).';
-    tabla.appendChild(mensaje);
+const generateMultiplyTable = () => {
+  const fragment = document.createDocumentFragment();
+  const value = Number(inputNumberElement.value); // Convertir a número
+  for (let i = 0; i < 11; i++) {
+    const result = value * i;
+    const newLi = document.createElement('li');
+    newLi.textContent = `${value} x ${i} = ${result}`; // Corregir `texContent`
+    fragment.append(newLi);
   }
-});
+  multiplyListElement.textContent = '';
+  multiplyListElement.append(fragment);
+};
 
-// Desactivar el botón si el input está vacío inicialmente
-boton.disabled = true;
-document.getElementById('numero').addEventListener('input', () => {
-  boton.disabled = document.getElementById('numero').value.trim() === '';
-});
+inputNumberElement.addEventListener('input', validateNumber);
+buttonGenerateElement.addEventListener('click', generateMultiplyTable);
 
 // - Con este objeto debes crear tarjetas de usuario que muestren todos los datos, el diseño es libre, lo importante es que muestren toda la información del usuario y la imagen de perfil. Crea una función que genere todas las tarjetas de usuario y las inserte en el DOM
 
