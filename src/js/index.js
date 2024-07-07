@@ -64,6 +64,18 @@ button.addEventListener('click', createItem);
 
 // - Crea una función que cree un div con dos botones dentro. Un botón tendrá el texto 'red' y el otro el texto 'green', al hacer click en los botones debe cambiar el background-color del div al color que corresponda.
 
+// const createColorChangingDiv = () => {
+//   const newDivElement = document.createElement('div');
+//   const redButton = document.createElement('button');
+//   redButton.textContent = 'red';
+//   redButton.addEventListener('click', () => {
+//     newDivElement.style.backgroundColor = 'red';
+//   });
+//   newDivElement.append(redButton, greenButton);
+//   document.body.append(newDivElement);
+// };
+// createColorChangingDiv();
+
 // ## Inserción múltiple
 
 // - Crea una función que sea capaz de generar 25 números aleatorios y los devuelva.
